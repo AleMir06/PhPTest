@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="Weitere/styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <?php
-            foreach (scandir("./Bilder3") as $file) {
-                if ($file === ".." or $file === ".") continue;
-                    $SRC = "./Bilder3/".$file."";
-                    echo "<img src='".$SRC."'/>\n\n";
+        <div onmousedown="WhichButton(event)" class="body0">
+            <?php
+                foreach(scandir("./Videos") as $type){
+                    if($type === ".." or $type === ".") continue;
+                    $Liste [] = $type;
+                    echo "<div class='type0'>";
+                    echo "<h3>".$type."</h3>\n\n";
+                    foreach(scandir("./Videos/".$type) as $dir) {
+                        if($dir === ".." or $dir === ".") continue;
+                        echo "<p>".$dir."</p>";
+                    }
+                    echo "</div>";
                 }
-
-            foreach(scandir("./Videos")as $dir) {
-              if($dir === ".." or $dir === ".") continue;
-                echo "<h1>".$dir."<h1>\n";
-                foreach(scandir("./Videos/".$dir.) as $dir2) {
-                  echo "<div class='dropdown'";
-                  echo "\t<button class='dropbtn'>Dropdown<\button>";
-                  echo "\t<div class='dropdown-content'>";
-                  foreach(scandir("./Videos/".$dir."/".$dir2) as $file){
-                    echo "<a href='#'>".$file."</a>";
-                  }
-                }
-            }
-        ?>
-
-      <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+            ?>
         </div>
-      </div>
-
+        <script>
+            function WhichButton(event) {
+                document.addEventListener('contextmenu', event => event.preventDefault());
+            }
+        </script>
     </body>
 </html>
